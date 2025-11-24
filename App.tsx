@@ -12,15 +12,25 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
+
     const getInfo = async () => {
       setLoading(true);
       setGeminiInfo(null);
+      
       const info = await fetchCoffeeInfo(selectedCoffee.name);
-      setGeminiInfo(info);
-      setLoading(false);
+      
+      if (isMounted) {
+        setGeminiInfo(info);
+        setLoading(false);
+      }
     };
 
     getInfo();
+
+    return () => {
+      isMounted = false;
+    };
   }, [selectedCoffee]);
 
   // Sort recipes alphabetically for mobile dropdown
@@ -96,7 +106,7 @@ const App: React.FC = () => {
             </div>
 
             {/* 3. Info Section - Fixed at bottom above selector */}
-            <div className="flex-none w-full flex flex-col gap-2 max-w-3xl mx-auto animate-fade-in-up mb-16 md:mb-0">
+            <div className="flex-none w-full flex flex-col gap-2 max-w-3xl mx-auto animate-fade-in-up mb-20 md:mb-0">
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 w-full">
                 {/* Taste Profile - Desktop Only (Hidden on mobile as tags are at top) */}
@@ -139,8 +149,8 @@ const App: React.FC = () => {
             </div>
         </div>
 
-        {/* Mobile Bottom Selector (Fixed) */}
-        <div className="md:hidden fixed bottom-0 left-0 w-full bg-[#161616] border-t border-white/10 p-3 z-50 safe-area-bottom shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+        {/* Mobile Bottom Selector (Floating above bottom) */}
+        <div className="md:hidden fixed bottom-6 left-4 right-4 bg-[#1a1a1a]/90 backdrop-blur-xl border border-white/10 p-2 rounded-2xl z-50 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
           <div className="relative">
              <select 
                value={selectedCoffee.id}

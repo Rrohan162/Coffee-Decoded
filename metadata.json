@@ -1,0 +1,5 @@
+{
+  "name": "Coffee-Decoded",
+  "description": "An interactive 3D-style coffee visualizer that breaks down your favorite brews layer by layer, powered by Gemini AI for rich descriptions.",
+  "requestFramePermissions": []
+}

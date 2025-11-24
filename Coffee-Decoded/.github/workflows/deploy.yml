@@ -1,10 +1,17 @@
+name: Deploy Vite to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./Coffee-Decoded   # 👈 THIS FIXES THE ERROR
-
     steps:
       - uses: actions/checkout@v4
 
@@ -17,4 +24,13 @@ jobs:
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./Coffee-Decoded/dist
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/deploy-pages@v4

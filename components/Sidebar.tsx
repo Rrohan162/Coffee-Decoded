@@ -104,7 +104,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCoffee, onSelect, className =
         >
           Connect on LinkedIn
         </a>
-        <p className="text-[9px] text-gray-600">Powered by Gemini 2.5 Flash</p>
+        <p className="text-[9px] text-gray-600">Powered by Gemini 2.5 Flash • v1.2</p>
       </div>
 
       <style>{`

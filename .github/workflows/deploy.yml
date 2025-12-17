@@ -1,4 +1,4 @@
-name: Deploy Vite to GitHub Pages
+ame: Deploy Vite to GitHub Pages
 
 on:
   push:
@@ -12,9 +12,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./Coffee-Decoded
 
     steps:
       - uses: actions/checkout@v4

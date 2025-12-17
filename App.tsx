@@ -92,8 +92,8 @@ const App: React.FC = () => {
         {/* Background Ambient Glow */}
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_60%_40%,rgba(60,40,30,0.25),rgba(0,0,0,0))] pointer-events-none z-0"></div>
 
-        {/* Main Visual Container */}
-        <div className="relative z-10 w-full h-full flex flex-col justify-between p-3 md:p-8 max-w-6xl mx-auto safe-area-bottom">
+        {/* Main Visual Container - Updated to allow scrolling on mobile if content overflows */}
+        <div className="relative z-10 w-full h-full flex flex-col justify-between p-3 md:p-8 max-w-6xl mx-auto safe-area-bottom overflow-y-auto md:overflow-visible scrollbar-hide">
             
             {/* 1. Header Section */}
             <div className="flex-none pt-12 md:pt-0 text-center animate-fade-in-down z-10">
@@ -122,8 +122,8 @@ const App: React.FC = () => {
               </div>
             </div>
             
-            {/* 2. Coffee Visualizer */}
-            <div className="flex-1 flex items-center justify-center relative min-h-0 my-0 md:my-2">
+            {/* 2. Coffee Visualizer - Added min-height to ensure it doesn't shrink to 0 */}
+            <div className="flex-1 flex items-center justify-center relative min-h-[300px] md:min-h-0 my-0 md:my-2">
               <CoffeeCup recipe={selectedCoffee} />
             </div>
 
@@ -162,9 +162,17 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              {/* Mobile Footer Credits */}
-              <div className="md:hidden text-center pt-2 pb-1 opacity-90">
+              {/* Mobile Footer Credits - Ensured high z-index and visibility */}
+              <div className="md:hidden text-center pt-2 pb-1 opacity-90 flex flex-col items-center gap-1 relative z-10">
                 <p className="text-[10px] text-gray-500">Built with ❤️ by <span className="text-gray-400 font-medium">Rohan Mayekar</span></p>
+                <a 
+                  href="https://www.linkedin.com/in/rohanmayekar/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-[10px] text-amber-500 hover:text-amber-400 font-medium transition-colors"
+                >
+                  Connect on LinkedIn
+                </a>
               </div>
               
             </div>
@@ -216,7 +224,6 @@ const App: React.FC = () => {
                                 value={mobileSearchTerm}
                                 onChange={(e) => setMobileSearchTerm(e.target.value)}
                                 className="w-full bg-black/30 border border-white/10 rounded-xl py-3 pl-10 pr-10 text-sm text-white focus:outline-none focus:border-amber-500/50 transition-colors placeholder-gray-600"
-                                autoFocus
                             />
                             {mobileSearchTerm && (
                                 <button 

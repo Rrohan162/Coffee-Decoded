@@ -33,7 +33,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCoffee, onSelect, className =
           </div>
           <div>
             <h1 className="text-xl font-bold text-white tracking-wide">Coffee-Decoded</h1>
-            <p className="text-[10px] text-gray-400 uppercase tracking-wider">Interactive Menu</p>
+            <p className="text-[10px] text-gray-400 uppercase tracking-wider">Premium Coffee Menu</p>
           </div>
         </div>
         
